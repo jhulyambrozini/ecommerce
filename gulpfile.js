@@ -9,21 +9,32 @@ const images = require('gulp-images')
 
 function tarefasCSS() {
 
-    return gulp.src('./vendor/**/*.css')
+    return gulp.src(['./node_modules/bootstrap/dist/css/bootstrap.css',
+                    './vendor/owl/css/owl.carousel.css',
+                    './node_modules/@fortawesome/fontawesome-free/css/fontawesome.css',
+                    './src/css/style.css' 
+                ])
 
-            .pipe(concat('libs.css'))
+            .pipe(concat('styles.css'))
             .pipe(cssmin())
-            .pipe(rename({ suffix: '.min'})) //libs.min.css
+            .pipe(rename({ suffix: '.min'})) //styles.min.css
             .pipe(gulp.dest('./dist/css'))
 }
 
 function tarefasJS() {
 
-    return gulp.src('./vendor/**/*.js')
+    return gulp.src([
+        './node_modules/jquery/dist/jquery.js',
+        './node_modules/bootstrap/dist/js/bootstrap.js',
+        './vendor/jquery-mask/jquery.mask.js',
+        './vendor/owl/js/owl.carousel.js',
+        './vendor/jquery-ui/jquery-ui.js',
+        './src/js/custom.js'
+    ])
 
-            .pipe(concat('libs.js'))
+            .pipe(concat('scripts.js'))
             .pipe(uglify())
-            .pipe(rename({ suffix: '.min'})) //libs.min.js
+            .pipe(rename({ suffix: '.min'})) //scripts.min.js
             .pipe(gulp.dest('./dist/js'))
 }
 
