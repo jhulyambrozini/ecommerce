@@ -3,6 +3,7 @@
     "git-commit-msg-linter": "^4.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.2.0",
+    "gulp-images": "^0.0.3",
     "gulp-rename": "^2.0.0",
     "gulp-uglify": "^3.0.2"
   },
