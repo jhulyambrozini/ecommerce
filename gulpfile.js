@@ -4,7 +4,7 @@ const concat = require('gulp-concat')
 const cssmin = require('gulp-cssmin')
 const rename = require('gulp-rename')
 const uglify = require('gulp-uglify')
-const images = require('gulp-images')
+const images = require('gulp-image')
 
 
 function tarefasCSS() {
@@ -49,7 +49,6 @@ function tarefasImagem() {
                 jpegRecompress: false,
                 mozjpeg: true,
                 gifsicle: true,
-                svgo: true,
                 concurrent: 10,
                 quiet: true
             }))
