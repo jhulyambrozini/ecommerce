@@ -1,6 +1,10 @@
 {
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "browser-sync": "^2.27.11",
     "git-commit-msg-linter": "^4.4.0",
+    "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.2.0",
     "gulp-image": "^5.1.0",
@@ -21,6 +25,7 @@
     "did-you-mean": "^0.0.1",
     "escape-string-regexp": "^1.0.5",
     "gulp": "^4.0.2",
+    "gulp-htmlmin": "^5.0.1",
     "gulp-image": "^5.1.0",
     "has-flag": "^4.0.0",
     "jquery": "^3.6.1",
