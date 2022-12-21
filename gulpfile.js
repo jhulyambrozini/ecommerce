@@ -6,6 +6,7 @@ const cssmin = require('gulp-cssmin')
 const rename = require('gulp-rename')
 const uglify = require('gulp-uglify')
 const images = require('gulp-image')
+const stripCss = require('gulp-strip-css-comments')
 const htmlmin = require('gulp-htmlmin')
 const babel = require('gulp-babel')
 const browserSync = require('browser-sync').create()
@@ -16,14 +17,47 @@ function tarefasCSS(callback) {
 
     gulp.src(['./node_modules/bootstrap/dist/css/bootstrap.css',
                     './vendor/owl/css/owl.carousel.css',
-                    './node_modules/@fortawesome/fontawesome-free/css/fontawesome.css',
+                    './vendor/fontawesome/fontawesome.css',
                     './src/css/style.css' 
                 ])
 
+            .pipe(stripCss()) //reover comentários no css
             .pipe(concat('styles.css'))
             .pipe(cssmin())
             .pipe(rename({ suffix: '.min'})) //styles.min.css
             .pipe(gulp.dest('./dist/css'))
+
+    return callback()
+}
+
+function tarefasFontawesome(callback) {
+
+    gulp.src('./vendor/fontawesome/fontawesome.css')
+    .pipe(stripCss()) //reover comentários no css
+    .pipe(concat('fontawesome.css'))
+    .pipe(cssmin())
+    .pipe(rename({ suffix: '.min'})) //styles.min.css
+    .pipe(gulp.dest('./dist/fontawesome'))
+
+    return callback()
+
+}
+
+function tarefasFonts(callback) {
+
+    gulp.src('./vendor/fonts/*')
+        .pipe(images({
+            pngquant: true,
+            optLipng: false,
+            zopflipng: true,
+            jpegRecompress: false,
+            mozjpeg: true,
+            gifsicle: true,
+            concurrent: 10,
+            svgo: true,
+            quiet: true
+        }))
+        .pipe(gulp.dest('./dist/fonts'))
 
     return callback()
 }
@@ -45,7 +79,7 @@ function tarefasJS(callback) {
             }))
             .pipe(concat('scripts.js'))
             .pipe(uglify())
-            .pipe(rename({ suffix: '.min'})) //scripts.min.js
+            .pipe(rename({ suffix: '.min'}))
             .pipe(gulp.dest('./dist/js'))
 
     return callback()
@@ -63,6 +97,7 @@ function tarefasImagem() {
                 mozjpeg: true,
                 gifsicle: true,
                 concurrent: 10,
+                svgo: true,
                 quiet: true
             }))
             .pipe(gulp.dest('./dist/images'))
@@ -78,7 +113,7 @@ function tarefasHTML(callback){
         return callback()
 }
 
-gulp.task('server', function(){
+gulp.task('serve', function(){
 
     browserSync.init({
         server: {
@@ -89,7 +124,13 @@ gulp.task('server', function(){
     gulp.watch('./src/**/*').on('change', reload)
 })
 
-const process = series ( tarefasCSS, tarefasJS, tarefasHTML)
+function end(cb){
+
+    console.log("tarefas concluídas")
+    return cb()
+}
+
+const process = series ( tarefasCSS, tarefasJS, tarefasHTML,tarefasFontawesome, tarefasFonts, end)
 
 
 exports.default = process
