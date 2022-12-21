@@ -8,3 +8,8 @@ Template de um ecommerce feito com o auxilio de professores da EBAC, com o objet
 - Bootstrap
 - Jquery
 - Owl Carousel
+- Gulp
+
+## Para rodar o projeto
+npm install
+gulp serve
