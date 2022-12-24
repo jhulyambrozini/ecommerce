@@ -130,7 +130,7 @@ function end(cb){
     return cb()
 }
 
-const process = series ( tarefasCSS, tarefasJS, tarefasHTML,tarefasFontawesome, tarefasFonts, end)
+const process = series ( tarefasCSS, tarefasJS, tarefasImagem, tarefasHTML,tarefasFontawesome, tarefasFonts, end)
 
 
 exports.default = process
