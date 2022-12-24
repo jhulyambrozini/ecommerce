@@ -11,5 +11,6 @@ Template de um ecommerce feito com o auxilio de professores da EBAC, com o objet
 - Gulp
 
 ## Para rodar o projeto
-npm install
-gulp serve
+1. rodar `npm install` no terminal
+2. em seguida: `gulp` para a criação da pasta dist
+3. e `gulp serve` para o projeto iniciar no servidor do gulp
