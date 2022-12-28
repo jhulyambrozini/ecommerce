@@ -1,0 +1,59 @@
+.owl-carousel {
+	.item {
+		margin-bottom: 30px;
+		text-decoration: none;
+		&:hover {
+			opacity: 0.9;
+			h4 {
+				color: $color-02;
+			}
+		}
+		img {
+			width: 100%;
+		}
+		h4 {
+			font-size: 18px;
+			font-weight: 700;
+			color: #1e1e1e;
+			margin-top: 15px;
+			transition: all 0.5s;
+		}
+		h6 {
+			color: $color-02;
+			font-size: 17px;
+			font-weight: 700;
+			margin-bottom: 0px;
+			padding-bottom: 10px;
+		}
+		.btn {
+			a {
+			color: $color-01 !important;
+			}
+		}
+	}
+}
+
+.owl-theme {
+	.owl-dots {
+		text-align: center;
+		margin-top: 30px;
+		.owl-dot {
+			outline: none;
+			span {
+				background-color: #aaa;
+				width: 8px;
+				height: 8px;
+				display: inline-block;
+				margin: 0px 5px;
+				outline: none;
+			}
+		}
+		.active {
+			span {
+			background-color:  $color-theme!important;
+			}
+		}
+	}
+}
+
+

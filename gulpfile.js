@@ -3,6 +3,7 @@ const { series, parallel } = require('gulp')
 const gulp = require ('gulp')
 const concat = require('gulp-concat')
 const cssmin = require('gulp-cssmin')
+const sass = require('gulp-sass')(require('node-sass'))
 const rename = require('gulp-rename')
 const uglify = require('gulp-uglify')
 const images = require('gulp-image')
@@ -18,14 +19,22 @@ function tarefasCSS(callback) {
     gulp.src(['./node_modules/bootstrap/dist/css/bootstrap.css',
                     './vendor/owl/css/owl.carousel.css',
                     './vendor/fontawesome/fontawesome.css',
-                    './src/css/style.css' 
                 ])
 
             .pipe(stripCss()) //reover comentários no css
-            .pipe(concat('styles.css'))
+            .pipe(concat('libs.css'))
             .pipe(cssmin())
-            .pipe(rename({ suffix: '.min'})) //styles.min.css
+            .pipe(rename({ suffix: '.min'})) //libs.min.css
             .pipe(gulp.dest('./dist/css'))
+
+    return callback()
+}
+
+function tarefasSASS ( callback) {
+    
+    gulp.src('./src/scss/**/*.scss')
+    .pipe(sass()) // transforma o scss para css
+    .pipe(gulp.dest('./dist/css'))
 
     return callback()
 }
@@ -85,9 +94,9 @@ function tarefasJS(callback) {
     return callback()
 }
 
-function tarefasImagem() {
+function tarefasImagem(callback) {
 
-   return gulp.src('./src/images/*')
+   gulp.src('./src/images/*')
 
             .pipe(images({
                 pngquant: true,
@@ -101,6 +110,8 @@ function tarefasImagem() {
                 quiet: true
             }))
             .pipe(gulp.dest('./dist/images'))
+
+        return callback()
 
 }
 
@@ -130,10 +141,11 @@ function end(cb){
     return cb()
 }
 
-const process = series ( tarefasCSS, tarefasJS, tarefasImagem, tarefasHTML,tarefasFontawesome, tarefasFonts, end)
+const process = series ( tarefasCSS,tarefasSASS, tarefasJS, tarefasImagem, tarefasHTML,tarefasFontawesome, tarefasFonts, end)
 
 
 exports.default = process
 exports.styles = tarefasCSS
 exports.scripts = tarefasJS
 exports.images = tarefasImagem
+exports.sass = tarefasSASS
