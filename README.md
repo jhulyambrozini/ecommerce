@@ -12,15 +12,15 @@ Template de um ecommerce feito com o auxilio de professores da EBAC, com o objet
 - SASS
 
 ## Para rodar o projeto
-Instalar as dependênias
+Instalar as dependências
 ```
 npm install
 ```
-Criar a pasta dist com o gerenciador de tarefas
+criar a pasta dist com o gerenciador de tarefas
 ```
 gulp
 ```
-Rodar o projeto com o servidor do gulp
+rodar o projeto no servidor do gulp
 ```
 gulp serve
 ```
